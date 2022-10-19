@@ -1,3 +1,13 @@
 .router-link-exact-active {
   @apply underline text-blue-700 font-medium;
 }
+
+@font-face {
+  font-family: RickAndMorty;
+  src: url('public/shlop-rg.ttf');
+}
+
+a {
+  font-family: RickAndMorty;
+  color: darkgreen;
+}

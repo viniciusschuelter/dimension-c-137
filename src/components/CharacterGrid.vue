@@ -1,5 +1,7 @@
 <template>
-  <div class="grid-container grid grid-cols-4 gap-4 bg-stripes-fuchsia rounded-lg">
+  <div
+    class="grid-container grid xl:grid-cols-4 sm:grid-cols-2 lg:grid-cols-3 gap-4 rounded-lg"
+  >
     <CharacterCard
       v-for="character in characterList"
       :key="character.id"
@@ -28,3 +30,10 @@ export default class CharacterGrid extends Vue {
   }
 }
 </script>
+
+<style scoped>
+.grid-container {
+  max-width: 1280px;
+  margin: 0 auto;
+}
+</style>

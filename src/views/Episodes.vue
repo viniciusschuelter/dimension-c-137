@@ -13,5 +13,5 @@ import CharacterGrid from "@/components/CharacterGrid.vue";
     CharacterGrid,
   },
 })
-export default class Home extends Vue {}
+export default class Episodes extends Vue {}
 </script>

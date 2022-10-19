@@ -15,6 +15,16 @@ const routes: Array<RouteConfig> = [
     name: 'About',
     component: () => import('../views/About.vue'),
   },
+  {
+    path: '/episodes',
+    name: 'Episodes',
+    component: () => import('../views/About.vue'),
+  },
+  {
+    path: '/locations',
+    name: 'Locations',
+    component: () => import('../views/About.vue'),
+  },
 ];
 
 const router = new VueRouter({
