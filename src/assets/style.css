@@ -4,12 +4,12 @@
 
 @font-face {
   font-family: RickAndMorty;
-  src: url('public/shlop-rg.woff2');
+  src: url('fonts/shlop-rg.woff2');
 }
 
 @font-face {
   font-family: RickAndMorty2;
-  src: url('public/get-schwifty.woff2');
+  src: url('fonts/get-schwifty.woff2');
 }
 
 .navbar {
