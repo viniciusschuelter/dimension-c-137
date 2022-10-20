@@ -1,6 +1,6 @@
 <template>
   <div
-    class="grid-container grid xl:grid-cols-4 sm:grid-cols-2 lg:grid-cols-3 gap-4 rounded-lg"
+    class="grid-container grid xl:grid-cols-4 sm:grid-cols-2 lg:grid-cols-3 gap-8 rounded-lg px-5"
   >
     <CharacterCard
       v-for="character in characterList"

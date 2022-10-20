@@ -2,9 +2,10 @@
   <div class="font-sans antialiased pb-8" id="app">
     <nav class="flex items-center justify-between flex-wrap bg-[#F29901] p-6">
       <div class="flex items-center flex-no-shrink text-cyan-200 mr-6">
-        <span class="font-semibold text-xl tracking-tight">Dimension C-137</span>
+        <img class="rounded-full w-[3rem] mr-3" src="@/assets/logo.gif" />
+        <h1 class="font-extrabold  md:text-[2rem] text-[1rem] md:hidden lg:block">Dimension C-137</h1>
       </div>
-      <div class="block sm:hidden">
+      <div class="block md:hidden">
         <button
           @click="toggle"
           class="flex items-center px-3 py-2 border rounded border-teal-light hover:text-white hover:border-white"
@@ -21,36 +22,32 @@
       </div>
       <div
         :class="open ? 'block' : 'hidden'"
-        class="w-full flex-grow sm:flex sm:items-center sm:w-auto"
+        class="w-full flex-grow md:flex md:items-center md:w-auto"
       >
-        <div class="text-xl sm:flex-grow text-center" id="nav">
+        <div class="text-xl md:flex-grow text-center navbar" id="nav">
           <router-link
-            class="no-underline block mt-4 sm:inline-block sm:mt-0 text-cyan-200 hover:text-white mr-4"
+            class="no-underline block mt-4 sm:inline-block sm:mt-0 text-cyan-200 hover:text-white mr-8"
             to="/"
             >Home</router-link
           >
           <router-link
-            class="no-underline block mt-4 sm:inline-block sm:mt-0 text-cyan-200 hover:text-white mr-4"
+            class="no-underline block mt-4 sm:inline-block sm:mt-0 text-cyan-200 hover:text-white mr-8"
             to="/about"
             >About</router-link
           >
           <router-link
-            class="no-underline block mt-4 sm:inline-block sm:mt-0 text-cyan-200 hover:text-white mr-4"
+            class="no-underline block mt-4 sm:inline-block sm:mt-0 text-cyan-200 hover:text-white mr-8"
             to="/episodes"
             >Episodes</router-link
           >
           <router-link
-            class="no-underline block mt-4 sm:inline-block sm:mt-0 text-cyan-200 shover:text-white mr-4"
+            class="no-underline block mt-4 sm:inline-block sm:mt-0 text-cyan-200 shover:text-white"
             to="/locations"
             >Locations</router-link
           >
         </div>
-        <div>
-          <a
-            href="#"
-            class="no-underline inline-block text-sm px-4 py-2 leading-none border rounded text-white border-white hover:border-transparent hover:text-teal hover:bg-white mt-4 sm:mt-0"
-            >Download</a
-          >
+        <div class="text-center pt-3">
+          <GithubButton />
         </div>
       </div>
     </nav>
@@ -59,15 +56,15 @@
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator'
+import GithubButton from '@/components/GithubButton.vue'
 
-@Component
+@Component({
+  components: {
+    GithubButton,
+  },
+})
 export default class Navbar extends Vue {
   open = false
-
-  constructor() {
-    super()
-    this.$el
-  }
 
   toggle() {
     this.open = !this.open

@@ -7,7 +7,17 @@
   src: url('public/shlop-rg.ttf');
 }
 
-a {
+@font-face {
+  font-family: RickAndMorty2;
+  src: url('public/get-schwifty.ttf');
+}
+
+.navbar {
+  font-family: RickAndMorty2;
+  letter-spacing: 3px;
+}
+
+h1, h2 {
   font-family: RickAndMorty;
-  color: darkgreen;
+  letter-spacing: 3px;
 }
