@@ -20,3 +20,12 @@ export const getCharacters = (filters: FilterQuery): Observable<CharacterModel[]
     map((reponse: { results: CharacterModel[] }) => reponse.results)
   )
 }
+
+
+export const getMultiCharacters = (chars: string[]): Observable<CharacterModel[]> => {
+  const url = `${BASE_URL}/${endpoint}/${chars.join(',')}`
+  return from(fetch(url)).pipe(
+      switchMap((response) => response.json()),
+      map((reponse: CharacterModel[] ) => reponse)
+  )
+}
