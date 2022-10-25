@@ -1,6 +1,6 @@
 <template>
   <div class="home">
-    <SelectEpisode :episode-list="episodeList" v-on:selectedEpisode="selectedEpisode($event)" />
+    <SelectEpisode v-on:selectedEpisode="selectedEpisode($event)" />
     <CharacterGrid :character-list="characterList" />
   </div>
 </template>
@@ -22,12 +22,16 @@ import SelectEpisode from "@/components/SelectEpisode.vue";
   },
 })
 export default class Episodes extends Vue {
-  episodeList: EpisodeModel[] = []
+  episodes: EpisodeModel[] = this.$store.state.episodes;
   characterList: CharacterModel[] = []
   subs: Subscription = new Subscription()
 
   mounted() {
-    this.getEpisodes()
+    if (this.episodes.length) {
+      this.selectedEpisode()
+    } else {
+      this.getEpisodes()
+    }
   }
 
   beforeDestroy() {
@@ -39,7 +43,8 @@ export default class Episodes extends Vue {
       getEpisodes()
         .pipe()
         .subscribe((episodes: EpisodeModel[]) => {
-          this.episodeList = episodes
+          this.$store.dispatch('fetchEpisodes', episodes);
+          this.episodes = episodes;
           this.selectedEpisode()
         })
     )
@@ -49,12 +54,12 @@ export default class Episodes extends Vue {
     this.subs.add(
       getMultiCharacters(chars)
         .pipe()
-        .subscribe((chars: CharacterModel[]) => (this.characterList = chars))
+        .subscribe((chars: CharacterModel[]) => (this.characterList = [...chars]))
     )
   }
 
   selectedEpisode(episodeId?: number): void {
-    const episode = this.episodeList.find( _ => _.id == episodeId) || this.episodeList[0];
+    const episode = this.episodes.find( _ => _.id == episodeId) || this.episodes[0];
     const chars = episode.characters.map((_) => _.split('/').reverse()[0]);
     this.getMultiCharacters(chars);
   }

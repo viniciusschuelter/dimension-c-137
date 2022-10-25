@@ -1,6 +1,6 @@
 <template>
   <div class="home">
-    <SelectLocation :location-list="locationList" />
+    <SelectLocation v-on:selectedLocation="selectedLocation($event)" />
     <CharacterGrid :character-list="characterList" />
   </div>
 </template>
@@ -22,12 +22,16 @@ import SelectLocation from "@/components/SelectLocation.vue";
   },
 })
 export default class Locations extends Vue {
-  locationList: LocationModel[] = []
+  locations: LocationModel[] = this.$store.state.locations;
   characterList: CharacterModel[] = []
   subs: Subscription = new Subscription()
 
   mounted() {
-    this.getLocations()
+    if (this.locations.length) {
+      this.selectedLocation()
+    } else {
+      this.getLocations()
+    }
   }
 
   beforeDestroy() {
@@ -39,11 +43,9 @@ export default class Locations extends Vue {
       getLocations()
         .pipe()
         .subscribe((locations: LocationModel[]) => {
-          this.locationList = locations
-          const chars = this.locationList[0].residents.map(
-            (_) => _.split('/').reverse()[0]
-          )
-          this.getMultiCharacters(chars)
+          this.$store.dispatch('fetchLocations', locations);
+          this.locations = locations
+          this.selectedLocation()
         })
     )
   }
@@ -52,8 +54,14 @@ export default class Locations extends Vue {
     this.subs.add(
       getMultiCharacters(chars)
         .pipe()
-        .subscribe((chars: CharacterModel[]) => (this.characterList = chars))
+        .subscribe((chars: CharacterModel[]) => (this.characterList = [...chars]))
     )
+  }
+
+  selectedLocation(locationId?: number): void {
+    const episode = this.locations.find( _ => _.id == locationId) || this.locations[0];
+    const chars = episode.residents.map((_) => _.split('/').reverse()[0]);
+    this.getMultiCharacters(chars);
   }
 }
 </script>

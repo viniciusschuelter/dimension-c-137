@@ -2,8 +2,9 @@
   <div class="select-container mb-4 px-2 w-full">
     <select
       class="w-full bg-[#f0e14a] border px-4 py-2 text-[#3a2376] rounded-full border-orange-300 focus:border-orange-500 focus:shadow-outline outline-none"
+      v-on:change="$emit('selectedLocation', $event.target.value)"
     >
-      <option v-for="opt in locationList" :key="opt.id" :value="opt.id">
+      <option v-for="opt in $store.state.locations" :key="opt.id" :value="opt.id">
         {{ opt.name }} - {{ opt.dimension }}
       </option>
     </select>
@@ -11,13 +12,10 @@
 </template>
 
 <script lang="ts">
-import { Component, Prop, Vue } from 'vue-property-decorator'
-import { LocationModel } from '@/models/location.model'
+import { Component, Vue } from 'vue-property-decorator'
 
 @Component
-export default class SelectEpisode extends Vue {
-  @Prop() locationList: Partial<LocationModel>[] = []
-}
+export default class SelectEpisode extends Vue {}
 </script>
 
 <style scoped>

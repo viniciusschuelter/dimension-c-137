@@ -35,7 +35,7 @@ export default class Home extends Vue {
     this.subs.add(
       getCharacters({ name })
         .pipe()
-        .subscribe((chars: CharacterModel[]) => (this.characterList = chars))
+        .subscribe((chars: CharacterModel[]) => (this.characterList = [...chars]))
     )
   }
 }

@@ -5,7 +5,7 @@
       v-on:change="$emit('selectedEpisode', $event.target.value)"
     >
       <option
-        v-for="opt in episodeList"
+        v-for="opt in $store.state.episodes"
         :key="opt.id"
         :value="opt.id"
       >
@@ -16,13 +16,10 @@
 </template>
 
 <script lang="ts">
-import { Component, Prop, Vue } from 'vue-property-decorator'
-import { EpisodeModel } from '@/models/episode.model'
+import { Component, Vue } from 'vue-property-decorator'
 
 @Component
-export default class SelectEpisode extends Vue {
-  @Prop() episodeList: Partial<EpisodeModel>[] = []
-}
+export default class SelectEpisode extends Vue {}
 </script>
 
 <style scoped>
