@@ -1,5 +1,5 @@
 <template>
-  <div id="app" class="bg-[#f0e14a]">
+  <div id="app" class="flex flex-col bg-[#f0e14a]">
 <!--    <Header :title="'Dimension C-137'"></Header>-->
     <Navbar></Navbar>
     <router-view />

@@ -8,6 +8,7 @@ export interface FilterQuery {
   species?: string
   type?: string
   gender?: string
+  page?: number
 }
 
 const endpoint = 'character'
@@ -17,7 +18,7 @@ export const getCharacters = (filters: FilterQuery): Observable<CharacterModel[]
   const url = `${BASE_URL}/${endpoint}/?${searchParams}`
   return from(fetch(url)).pipe(
     switchMap((response) => response.json()),
-    map((reponse: { results: CharacterModel[] }) => reponse.results)
+    map((reponse: { results: CharacterModel[] }) => reponse)
   )
 }
 

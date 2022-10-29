@@ -32,8 +32,8 @@
           >
           <router-link
             class="no-underline block mt-4 sm:inline-block sm:mt-0 text-cyan-200 hover:text-white mr-8"
-            to="/about"
-            >About</router-link
+            to="/plumbus"
+            >Plumbus</router-link
           >
           <router-link
             class="no-underline block mt-4 sm:inline-block sm:mt-0 text-cyan-200 hover:text-white mr-8"
