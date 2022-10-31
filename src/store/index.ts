@@ -9,11 +9,15 @@ export default new Vuex.Store({
   state: {
     characters: [],
     episodes: [],
-    locations: []
+    locations: [],
+    loading: false
   },
   mutations: {
     fetchEpisodes() {
-      console.log('here');
+      console.log('episodes');
+    },
+    toogleLoading() {
+      console.log('loading');
     }
   },
   actions: {
@@ -22,6 +26,9 @@ export default new Vuex.Store({
     },
     fetchLocations({ state, commit }, locations) {
       state.locations = locations
+    },
+    toogleLoading({ state }) {
+      state.loading = !state.loading
     }
   },
   modules: {},

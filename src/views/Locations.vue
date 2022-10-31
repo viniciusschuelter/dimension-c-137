@@ -39,22 +39,28 @@ export default class Locations extends Vue {
   }
 
   getLocations(): void {
+    this.$store.dispatch('toogleLoading');
     this.subs.add(
       getLocations()
         .pipe()
         .subscribe((locations: LocationModel[]) => {
           this.$store.dispatch('fetchLocations', locations);
           this.locations = locations
+          this.$store.dispatch('toogleLoading');
           this.selectedLocation()
         })
     )
   }
 
   getMultiCharacters(chars: string[]): void {
+    this.$store.dispatch('toogleLoading');
     this.subs.add(
       getMultiCharacters(chars)
         .pipe()
-        .subscribe((chars: CharacterModel[]) => (this.characterList = [...chars]))
+        .subscribe((chars: CharacterModel[]) => {
+          this.characterList = [...chars]
+          this.$store.dispatch('toogleLoading');
+        })
     )
   }
 

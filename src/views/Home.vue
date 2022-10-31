@@ -1,8 +1,8 @@
 <template>
   <div class="home">
-    <SearchCharacter v-on:input="getCharacters($event)" />
+    <SearchCharacter v-on:input="page = 1; getCharacters($event)" />
     <CharacterGrid :character-list="characterList" />
-    <Paginator :page="page" :page-count="pageCount" v-on:page="page = $event; getCharacters()" />
+    <Paginator v-if="!searchTerm" :page="page" :page-count="pageCount" v-on:page="page = $event; getCharacters()" />
   </div>
 </template>
 
@@ -27,6 +27,7 @@ export default class Home extends Vue {
   subs: Subscription = new Subscription()
   page = 1
   pageCount = 0
+  searchTerm = ''
 
   mounted() {
     this.getCharacters()
@@ -37,12 +38,15 @@ export default class Home extends Vue {
   }
 
   getCharacters(name = ''): void {
+    this.searchTerm = name
+    this.$store.dispatch('toogleLoading');
     this.subs.add(
       getCharacters({ name, page: this.page})
         .pipe()
-        .subscribe((reponse: { results: CharacterModel[], info: {count: number} }) => {
-          this.pageCount = reponse.info.count
-          this.characterList = [...reponse.results]
+        .subscribe((response: { results: CharacterModel[], info: {count: number} }) => {
+          this.pageCount = response.info.count
+          this.characterList = [...response.results]
+          this.$store.dispatch('toogleLoading');
         })
     )
   }

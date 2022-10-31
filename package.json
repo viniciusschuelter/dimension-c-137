@@ -13,12 +13,12 @@
   "author": "Vinicius Schuelter <viniciusscshuelter@gmail.com>",
   "license": "MIT",
   "keywords": [
-    "template",
     "javascript",
     "typescript",
     "vue 2.x",
     "vite",
     "tailwind",
+    "vuex",
     "css"
   ],
   "dependencies": {

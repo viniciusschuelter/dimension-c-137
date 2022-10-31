@@ -4,6 +4,7 @@
     <Navbar></Navbar>
     <router-view />
     <Footer></Footer>
+    <Loading v-if="$store.state.loading" />
   </div>
 </template>
 
@@ -11,10 +12,12 @@
 // import Header from '@/layout/Header';
 import Footer from '@/layout/Footer';
 import Navbar from '@/layout/Navbar';
+import Loading from "@/components/Loading";
 
 export default {
   name: 'App',
   components: {
+    Loading,
     // Header,
     Footer,
     Navbar

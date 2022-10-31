@@ -39,22 +39,28 @@ export default class Episodes extends Vue {
   }
 
   getEpisodes(): void {
+    this.$store.dispatch('toogleLoading');
     this.subs.add(
       getEpisodes()
         .pipe()
         .subscribe((episodes: EpisodeModel[]) => {
           this.$store.dispatch('fetchEpisodes', episodes);
           this.episodes = episodes;
+          this.$store.dispatch('toogleLoading');
           this.selectedEpisode()
         })
     )
   }
 
   getMultiCharacters(chars: string[]): void {
+    this.$store.dispatch('toogleLoading');
     this.subs.add(
       getMultiCharacters(chars)
         .pipe()
-        .subscribe((chars: CharacterModel[]) => (this.characterList = [...chars]))
+        .subscribe((chars: CharacterModel[]) => {
+          this.characterList = [...chars]
+          this.$store.dispatch('toogleLoading');
+        })
     )
   }
 
