@@ -1,11 +1,6 @@
-import Vue from 'vue';
-import Vuex from 'vuex';
-// import {getEpisodes} from "@/services/episode.service";
-// import {map} from "rxjs";
+import { createStore } from 'vuex';
 
-Vue.createApp(Vuex);
-
-export default new Vuex.Store({
+export default createStore({
   state: {
     characters: [],
     episodes: [],

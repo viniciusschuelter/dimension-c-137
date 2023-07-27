@@ -8,14 +8,14 @@
 <script setup></script>
 
 <style scoped>
-.white-overlay {
-  background-color: rgba(0, 0, 0, 0.5);
-  z-index: 9999;
-  top: 0;
-  left: 0;
-  height: 100vh;
-  width: 100vw;
-  position: fixed;
-  margin: 0;
-}
+  .white-overlay {
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 9999;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 100vw;
+    position: fixed;
+    margin: 0;
+  }
 </style>

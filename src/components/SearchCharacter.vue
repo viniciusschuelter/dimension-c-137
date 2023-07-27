@@ -25,22 +25,22 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
+  import { ref, defineEmits } from 'vue'
 
-const debounce = ref(500)
-const emits = defineEmits<{ input: any }>()
+  const debounce = ref(500)
+  const emits = defineEmits<{ input: any }>()
 
-const debounceSearch = (search: string) => {
-  clearTimeout(debounce.value)
-  debounce.value = setTimeout(() => {
-    emits('input', search)
-  }, 500)
-}
+  const debounceSearch = (search: string) => {
+    clearTimeout(debounce.value)
+    debounce.value = setTimeout(() => {
+      emits('input', search)
+    }, 500)
+  }
 </script>
 
 <style scoped>
-.search-container {
-  max-width: 1280px;
-  margin: 0 auto 24px auto;
-}
+  .search-container {
+    max-width: 1280px;
+    margin: 0 auto 24px auto;
+  }
 </style>

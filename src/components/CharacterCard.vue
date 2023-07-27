@@ -35,7 +35,8 @@
       </h2>
 
       <p class="text-slate-500 text-sm font-bold select-none h-[3.5rem]">
-        {{ character.name }} is from {{ character.origin.name }}, and your type is
+        {{ character.name }} is from {{ character.origin.name }}, and your type
+        is
         {{ character.type || 'unknown' }}
       </p>
       <div
@@ -83,73 +84,75 @@
             d="M215.7 499.2C267 435 384 279.4 384 192C384 86 298 0 192 0S0 86 0 192c0 87.4 117 243 168.3 307.2c12.3 15.3 35.1 15.3 47.4 0zM192 256c-35.3 0-64-28.7-64-64s28.7-64 64-64s64 28.7 64 64s-28.7 64-64 64z"
           />
         </svg>
-        <h2 class="ml-2 truncate tracking-widest">{{ character.location.name }}</h2>
+        <h2 class="ml-2 truncate tracking-widest">
+          {{ character.location.name }}
+        </h2>
       </div>
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
-import { CharacterModel } from '@/models/character.model'
-import { ref } from 'vue'
+  import { CharacterModel } from '../models/character.model'
+  import { ref, defineProps } from 'vue'
 
-const props = defineProps<{ character: CharacterModel }>()
+  const props = defineProps<{ character: CharacterModel }>()
 
-const hover = ref(false)
+  const hover = ref(false)
 </script>
 
 <style scoped>
-/* common */
-.ribbon {
-  width: 100px;
-  height: 100px;
-  overflow: hidden;
-  position: absolute;
-}
-.ribbon::before,
-.ribbon::after {
-  position: absolute;
-  z-index: -1;
-  content: '';
-  display: block;
-  border: 5px solid #2980b9;
-}
-.ribbon span {
-  position: absolute;
-  display: block;
-  width: 190px;
-  padding: 8px 16px 8px 0;
-  background-color: #3498db;
-  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
-  color: #fff;
-  font: 700 18px/1 'Lato', RickAndMorty;
-  letter-spacing: 2px;
-  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
-  text-transform: uppercase;
-  text-align: center;
-}
+  /* common */
+  .ribbon {
+    width: 100px;
+    height: 100px;
+    overflow: hidden;
+    position: absolute;
+  }
+  .ribbon::before,
+  .ribbon::after {
+    position: absolute;
+    z-index: -1;
+    content: '';
+    display: block;
+    border: 5px solid #2980b9;
+  }
+  .ribbon span {
+    position: absolute;
+    display: block;
+    width: 190px;
+    padding: 8px 16px 8px 0;
+    background-color: #3498db;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+    color: #fff;
+    font: 700 18px/1 'Lato', RickAndMorty;
+    letter-spacing: 2px;
+    text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
+    text-transform: uppercase;
+    text-align: center;
+  }
 
-/* top right*/
-.ribbon-top-right {
-  top: -10px;
-  right: -10px;
-}
-.ribbon-top-right::before,
-.ribbon-top-right::after {
-  border-top-color: transparent;
-  border-right-color: transparent;
-}
-.ribbon-top-right::before {
-  top: 0;
-  left: 0;
-}
-.ribbon-top-right::after {
-  bottom: 0;
-  right: 0;
-}
-.ribbon-top-right span {
-  left: -25px;
-  top: 30px;
-  transform: rotate(45deg);
-}
+  /* top right*/
+  .ribbon-top-right {
+    top: -10px;
+    right: -10px;
+  }
+  .ribbon-top-right::before,
+  .ribbon-top-right::after {
+    border-top-color: transparent;
+    border-right-color: transparent;
+  }
+  .ribbon-top-right::before {
+    top: 0;
+    left: 0;
+  }
+  .ribbon-top-right::after {
+    bottom: 0;
+    right: 0;
+  }
+  .ribbon-top-right span {
+    left: -25px;
+    top: 30px;
+    transform: rotate(45deg);
+  }
 </style>

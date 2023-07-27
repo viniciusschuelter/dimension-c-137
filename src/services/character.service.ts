@@ -1,6 +1,7 @@
-import { from, map, Observable, switchMap } from 'rxjs'
-import { CharacterModel } from '@/models/character.model'
-import { BASE_URL } from '@/env'
+import { from, Observable} from 'rxjs'
+import { CharacterModel } from '../models/character.model'
+import { BASE_URL } from '../env'
+import { map, switchMap} from "rxjs/operators";
 
 export interface FilterQuery {
   name?: string
@@ -13,7 +14,7 @@ export interface FilterQuery {
 
 const endpoint = 'character'
 
-export const getCharacters = (filters: FilterQuery): Observable<CharacterModel[]> => {
+export const getCharacters = (filters: FilterQuery): Observable<{ results: CharacterModel[] }> => {
   const searchParams = Object.keys(filters).map((k) => `${k}=${filters[k]}`).join('&')
   const url = `${BASE_URL}/${endpoint}/?${searchParams}`
   return from(fetch(url)).pipe(

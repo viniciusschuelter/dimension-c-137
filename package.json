@@ -23,7 +23,7 @@
   ],
   "dependencies": {
     "core-js": "^3.31.1",
-    "rxjs": "^7.5.7",
+    "rxjs": "^6.6.7",
     "typewriter-effect": "^2.19.0",
     "vue": "^3.3.4",
     "vue-router": "^4.2.4",
@@ -48,23 +48,20 @@
     "stylus": "^0.54.7",
     "stylus-loader": "^3.0.2",
     "tailwindcss": "^3.0.23",
-    "typescript": "~4.1.5",
+    "typescript": "~4.1.6",
     "vite": "^4.4.7",
     "vite-plugin-eslint": "^1.8.1",
     "@vitejs/plugin-vue": "^4.2.3",
     "vue-template-compiler": "^2.6.11",
     "@vue/compiler-sfc": "^3.3.4"
   },
-  "lint-staged": {
-    "**/**.{js,json,vue,ts}": [
-      "eslint --fix --ignore-path .gitignore",
-      "pretty-quick --staged --ignore-path .gitignore"
-    ]
-  },
   "husky": {
     "hooks": {
       "pre-commit": "lint-staged"
     }
+  },
+  "lint-staged": {
+    "*.{ts,vue}": "eslint --fix"
   },
   "browserslist": [
     "> 1%",

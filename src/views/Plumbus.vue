@@ -15,5 +15,5 @@
 </template>
 
 <script setup lang="ts">
-import Typer from './../components/Typer'
+  import Typer from './../components/Typer'
 </script>

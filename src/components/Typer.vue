@@ -19,9 +19,9 @@
 </template>
 
 <script setup lang="ts">
-import { ReactInVue } from 'vuera'
-import Typewriter from 'typewriter-effect'
-import { defineComponent } from 'vue'
+  import { ReactInVue } from 'vuera'
+  import Typewriter from 'typewriter-effect'
+  import { defineComponent } from 'vue'
 
-const TypeWriter = defineComponent({ Typewriter: ReactInVue(Typewriter) })
+  const TypeWriter = defineComponent({ Typewriter: ReactInVue(Typewriter) })
 </script>
