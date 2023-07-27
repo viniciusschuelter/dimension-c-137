@@ -23,7 +23,10 @@
           >
         </li>
 
-        <li class="page-item" v-on:click="page !== pageCount ? goToPage(page + 1) : undefined">
+        <li
+          class="page-item"
+          v-on:click="page !== pageCount ? goToPage(page + 1) : undefined"
+        >
           <a
             class="page-link relative block py-1.5 px-3 rounded border-0 bg-transparent outline-none transition-all duration-300 rounded text-gray-800 hover:text-gray-800 hover:bg-gray-200 focus:shadow-none"
             :class="{
@@ -37,20 +40,17 @@
   </div>
 </template>
 
-<script lang="ts">
-import { Component, Prop, Vue } from 'vue-property-decorator'
+<script setup lang="ts">
+import { ref } from 'vue'
 
-@Component
-export default class Paginator extends Vue {
-  @Prop() page = 1
-  @Prop() pageCount = 0
+const props = defineProps<{ page: number; pageCount: number }>()
+const emits = defineEmits<{ page: any }>()
 
-  pages = [1, 2, 3]
+const pages = ref([1, 2, 3])
 
-  goToPage(page: number): void {
-    this.page = page
-    this.pages = [this.page - 1 || 1, this.page, this.page + 1 || this.pageCount]
-    this.$emit('page', this.page)
-  }
+const goToPage =(page: number): void => {
+  // page = page
+  pages.value = [page - 1 || 1, page, page + 1 || props.pageCount]
+  emits('page', page)
 }
 </script>

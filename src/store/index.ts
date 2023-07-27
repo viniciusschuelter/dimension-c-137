@@ -3,7 +3,7 @@ import Vuex from 'vuex';
 // import {getEpisodes} from "@/services/episode.service";
 // import {map} from "rxjs";
 
-Vue.use(Vuex);
+Vue.createApp(Vuex);
 
 export default new Vuex.Store({
   state: {

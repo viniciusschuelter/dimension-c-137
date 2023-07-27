@@ -4,7 +4,7 @@
     <Typer />
     <div class="aspect-w-16 aspect-h-9 h-[36rem] mt-5">
       <iframe
-          class="w-full h-full"
+        class="w-full h-full"
         src="https://www.youtube.com/embed/SWMGd_rzRdY"
         frameborder="0"
         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
@@ -14,14 +14,6 @@
   </div>
 </template>
 
-<script lang="ts">
-import { Component, Vue } from 'vue-property-decorator'
-import Typer from '@/components/Typer'
-
-@Component({
-  components: {
-    Typer,
-  },
-})
-export default class Plumbus extends Vue {}
+<script setup lang="ts">
+import Typer from './../components/Typer'
 </script>

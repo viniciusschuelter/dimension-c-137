@@ -11,12 +11,7 @@
   </div>
 </template>
 
-<script lang="ts">
-import { Component, Vue } from 'vue-property-decorator'
-
-@Component
-export default class SelectEpisode extends Vue {}
-</script>
+<script setup lang="ts"></script>
 
 <style scoped>
 .select-container {

@@ -5,7 +5,7 @@
   </div>
 </template>
 
-<script lang="ts">
+<script setup lang="ts">
 import { Component, Vue } from 'vue-property-decorator'
 import CharacterGrid from '@/components/CharacterGrid.vue'
 import { CharacterModel } from '@/models/character.model'

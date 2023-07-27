@@ -18,25 +18,23 @@
         type="text"
         :autofocus="true"
         placeholder="Search..."
-        v-on:input="debounceSearch($event.target.value)"
+        @input="debounceSearch($event.target.value)"
       />
     </div>
   </div>
 </template>
 
-<script lang="ts">
-import {Component, Vue} from 'vue-property-decorator'
+<script setup lang="ts">
+import { ref } from 'vue'
 
-@Component
-export default class SearchCharacter extends Vue {
-  debounce = null;
+const debounce = ref(500)
+const emits = defineEmits<{ input: any }>()
 
-  debounceSearch(search) {
-    clearTimeout(this.debounce)
-    this.debounce = setTimeout(() => {
-      this.$emit('input', search)
-    }, 500)
-  }
+const debounceSearch = (search: string) => {
+  clearTimeout(debounce.value)
+  debounce.value = setTimeout(() => {
+    emits('input', search)
+  }, 500)
 }
 </script>
 

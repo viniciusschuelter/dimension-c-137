@@ -5,69 +5,61 @@
   </div>
 </template>
 
-<script lang="ts">
-import { Component, Vue } from 'vue-property-decorator'
+<script setup lang="ts">
 import CharacterGrid from '@/components/CharacterGrid.vue'
 import { CharacterModel } from '@/models/character.model'
 import { Subscription } from 'rxjs'
 import { LocationModel } from '@/models/location.model'
 import { getLocations } from '@/services/location.service'
 import { getMultiCharacters } from '@/services/character.service'
-import SelectLocation from "@/components/SelectLocation.vue";
+import SelectLocation from '@/components/SelectLocation.vue'
+import { onBeforeUnmount, onMounted, ref } from 'vue'
+import store from '@/store'
 
-@Component({
-  components: {
-    SelectLocation,
-    CharacterGrid,
-  },
+const characterList = ref<CharacterModel[]>([])
+const subs: Subscription = new Subscription()
+
+onMounted(() => {
+  if (store.state.locations.length) {
+    selectedLocation()
+  } else {
+    getLocations()
+  }
 })
-export default class Locations extends Vue {
-  locations: LocationModel[] = this.$store.state.locations;
-  characterList: CharacterModel[] = []
-  subs: Subscription = new Subscription()
 
-  mounted() {
-    if (this.locations.length) {
-      this.selectedLocation()
-    } else {
-      this.getLocations()
-    }
-  }
+onBeforeUnmount(() => {
+  subs.unsubscribe()
+})
 
-  beforeDestroy() {
-    this.subs.unsubscribe()
-  }
+function getLocations(): void {
+  store.dispatch('toogleLoading')
+  subs.add(
+    getLocations()
+      .pipe()
+      .subscribe((locations: LocationModel[]) => {
+        store.dispatch('fetchLocations', locations)
+        store.dispatch('toogleLoading')
+        selectedLocation()
+      })
+  )
+}
 
-  getLocations(): void {
-    this.$store.dispatch('toogleLoading');
-    this.subs.add(
-      getLocations()
-        .pipe()
-        .subscribe((locations: LocationModel[]) => {
-          this.$store.dispatch('fetchLocations', locations);
-          this.locations = locations
-          this.$store.dispatch('toogleLoading');
-          this.selectedLocation()
-        })
-    )
-  }
+function getMultiCharacters(chars: string[]): void {
+  store.dispatch('toogleLoading')
+  subs.add(
+    getMultiCharacters(chars)
+      .pipe()
+      .subscribe((chars: CharacterModel[]) => {
+        characterList.value = [...chars]
+        this.$store.dispatch('toogleLoading')
+      })
+  )
+}
 
-  getMultiCharacters(chars: string[]): void {
-    this.$store.dispatch('toogleLoading');
-    this.subs.add(
-      getMultiCharacters(chars)
-        .pipe()
-        .subscribe((chars: CharacterModel[]) => {
-          this.characterList = [...chars]
-          this.$store.dispatch('toogleLoading');
-        })
-    )
-  }
-
-  selectedLocation(locationId?: number): void {
-    const episode = this.locations.find( _ => _.id == locationId) || this.locations[0];
-    const chars = episode.residents.map((_) => _.split('/').reverse()[0]);
-    this.getMultiCharacters(chars);
-  }
+function selectedLocation(locationId?: number): void {
+  const episode =
+    store.state.locations.find((_) => _.id == locationId) || store.state.locations[0]
+  const chars = episode.residents.map((_) => _.split('/').reverse()[0])
+  getMultiCharacters(chars)
 }
 </script>
