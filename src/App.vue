@@ -10,9 +10,9 @@
 
 <script>
 // import Header from '@/layout/Header';
-import Footer from '@/layout/Footer';
 import Navbar from '@/layout/Navbar';
-import Loading from "@/components/Loading";
+import Footer from "./layout/Footer";
+import Loading from "./components/Loading";
 
 export default {
   name: 'App',

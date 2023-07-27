@@ -54,20 +54,12 @@
   </div>
 </template>
 
-<script lang="ts">
-import { Component, Vue } from 'vue-property-decorator'
-import GithubButton from '@/components/GithubButton.vue'
+<script setup lang="ts">
+  import {ref} from "vue";
 
-@Component({
-  components: {
-    GithubButton,
-  },
-})
-export default class Navbar extends Vue {
-  open = false
+  const open = ref(false)
 
-  toggle() {
-    this.open = !this.open
+  function toggle() {
+    open.value = !open.value
   }
-}
 </script>
