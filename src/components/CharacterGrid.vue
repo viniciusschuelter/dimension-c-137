@@ -12,8 +12,7 @@
   </div>
 </template>
 
-<script lang="ts">
-import { Component, Prop, Vue } from 'vue-property-decorator'
+<script setup lang="ts">
 import CharacterCard from '@/components/CharacterCard.vue'
 import SearchCharacter from '@/components/SearchCharacter.vue'
 import { CharacterModel } from '@/models/character.model'
@@ -24,15 +23,7 @@ export enum ModuleEnum {
   location = 'location',
 }
 
-@Component({
-  components: {
-    CharacterCard,
-    SearchCharacter,
-  },
-})
-export default class CharacterGrid extends Vue {
-  @Prop() characterList: CharacterModel[]
-}
+const props = defineProps<{ characterList: CharacterModel[] }>()
 </script>
 
 <style scoped>

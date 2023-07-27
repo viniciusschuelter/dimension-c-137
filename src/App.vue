@@ -10,7 +10,7 @@
 
 <script>
 // import Header from '@/layout/Header';
-import Navbar from '@/layout/Navbar';
+import Navbar from './layout/Navbar';
 import Footer from "./layout/Footer";
 import Loading from "./components/Loading";
 

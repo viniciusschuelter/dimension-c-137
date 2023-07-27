@@ -10,9 +10,4 @@
   >
 </template>
 
-<script lang="ts">
-import { Component, Vue } from 'vue-property-decorator'
-
-@Component
-export default class GithubButton extends Vue {}
-</script>
+<script setup lang="ts"></script>

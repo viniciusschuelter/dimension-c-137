@@ -3,7 +3,9 @@
     <nav class="flex items-center justify-between flex-wrap bg-[#F29901] p-6">
       <div class="flex items-center flex-no-shrink text-cyan-200 mr-6">
         <img class="rounded-full w-[3rem] mr-3" src="@/assets/logo.gif" />
-        <h1 class="font-extrabold  md:text-[2rem] text-[1rem] md:hidden lg:block">Dimension C-137</h1>
+        <h1 class="font-extrabold md:text-[2rem] text-[1rem] md:hidden lg:block">
+          Dimension C-137
+        </h1>
       </div>
       <div class="block md:hidden">
         <button
@@ -55,11 +57,11 @@
 </template>
 
 <script setup lang="ts">
-  import {ref} from "vue";
+import { ref } from 'vue'
 
-  const open = ref(false)
+const open = ref(false)
 
-  function toggle() {
-    open.value = !open.value
-  }
+function toggle() {
+  open.value = !open.value
+}
 </script>
