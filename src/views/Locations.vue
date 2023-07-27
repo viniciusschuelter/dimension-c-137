@@ -14,10 +14,11 @@
   import { getMultiCharacters } from './../services/character.service'
   import SelectLocation from '@/components/SelectLocation.vue'
   import { onBeforeUnmount, onMounted, ref } from 'vue'
-  import store from './../store'
+  import { useStore } from 'vuex'
 
   const characterList = ref<CharacterModel[]>([])
   const subs: Subscription = new Subscription()
+  const store = useStore()
 
   onMounted(() => {
     if (store.state.locations.length) {

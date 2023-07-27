@@ -13,11 +13,12 @@
   import { getEpisodes } from './../services/episode.service'
   import { getMultiCharacters } from './../services/character.service'
   import SelectEpisode from '@/components/SelectEpisode.vue'
-  import store from './../store'
   import { onBeforeUnmount, onMounted, ref } from 'vue'
+  import { useStore } from 'vuex'
 
   const characterList = ref<CharacterModel[]>([])
   const subs: Subscription = new Subscription()
+  const store = useStore()
 
   onMounted(() => {
     if (store.state.episodes.length) {

@@ -1,6 +1,6 @@
 <template>
   <div>
-    <TypeWriter
+    <Typer
       :onInit="
         (typewriter) => {
           typewriter
@@ -19,9 +19,8 @@
 </template>
 
 <script setup lang="ts">
-  import { ReactInVue } from 'vuera'
+  import { applyPureReactInVue } from 'veaury'
   import Typewriter from 'typewriter-effect'
-  import { defineComponent } from 'vue'
 
-  const TypeWriter = defineComponent({ Typewriter: ReactInVue(Typewriter) })
+  const Typer = applyPureReactInVue(Typewriter)
 </script>

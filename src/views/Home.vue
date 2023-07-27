@@ -1,6 +1,6 @@
 <template>
   <div class="home">
-    <SearchCharacter @page="getCharacters($event)" />
+    <SearchCharacter @input="fetchCharacters($event)" />
     <CharacterGrid :character-list="characterList" />
     <Paginator
       v-if="!searchTerm"
@@ -19,10 +19,12 @@
   import { Subscription } from 'rxjs'
   import { getCharacters } from '../services/character.service'
   import { onBeforeUnmount, onMounted, ref } from 'vue'
-  import store from './../store'
+  import { useStore } from 'vuex'
 
   const characterList = ref<CharacterModel[]>([])
   const subs: Subscription = new Subscription()
+  const store = useStore()
+
 
   const page = ref<number>(1)
   const pageCount = ref<number>(0)
@@ -43,10 +45,7 @@
       getCharacters({ name, page: page.value })
         .pipe()
         .subscribe(
-          (response: {
-            results: CharacterModel[]
-            info: { count: number }
-          }) => {
+          (response: any) => {
             pageCount.value = response.info.count
             characterList.value = [...response.results]
             store.dispatch('toogleLoading')

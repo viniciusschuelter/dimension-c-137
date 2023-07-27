@@ -25,14 +25,14 @@
 </template>
 
 <script setup lang="ts">
-  import { ref, defineEmits } from 'vue'
+  import { defineEmits } from 'vue'
 
-  const debounce = ref(500)
+  let debounce: any = null
   const emits = defineEmits<{ input: any }>()
 
   const debounceSearch = (search: string) => {
-    clearTimeout(debounce.value)
-    debounce.value = setTimeout(() => {
+    clearTimeout(debounce)
+    debounce = setTimeout(() => {
       emits('input', search)
     }, 500)
   }

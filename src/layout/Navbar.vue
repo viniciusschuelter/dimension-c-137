@@ -58,6 +58,7 @@
 
 <script setup lang="ts">
 import { ref } from 'vue'
+import GithubButton from '../components/GithubButton'
 
 const open = ref(false)
 
