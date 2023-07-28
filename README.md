@@ -6,7 +6,7 @@ Welcome to Earth Dimension C-137
 
 [Live demo](https://dimension-c137.netlify.app)
 
-- Vite Vue2.x Tailwind Typescript
+- Vite Vue3.x Tailwind Typescript
 - Vuex
 - Vue router
 

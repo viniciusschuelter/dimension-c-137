@@ -55,7 +55,6 @@
   const pages = ref([1, 2, 3])
 
   const goToPage = (page: number): void => {
-    // page = page
     pages.value = [page - 1 || 1, page, page + 1 || props.pageCount]
     emits('page', page)
   }

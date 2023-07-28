@@ -6,7 +6,7 @@
       v-if="!searchTerm"
       :page="page"
       :page-count="pageCount"
-      @page="fetchCharacters()"
+      @page="fetchCharacters(searchTerm, $event)"
     />
   </div>
 </template>
@@ -25,7 +25,6 @@
   const subs: Subscription = new Subscription()
   const store = useStore()
 
-
   const page = ref<number>(1)
   const pageCount = ref<number>(0)
   const searchTerm = ref<string>('')
@@ -38,14 +37,15 @@
     subs.unsubscribe()
   })
 
-  function fetchCharacters(name = ''): void {
+  function fetchCharacters(name = '', currPage = 1): void {
+    page.value = currPage
     searchTerm.value = name
     store.dispatch('toogleLoading')
     subs.add(
-      getCharacters({ name, page: page.value })
+      getCharacters({ name, page: currPage })
         .pipe()
         .subscribe(
-          (response: any) => {
+          (response: { results: CharacterModel[], info: { count: number} }) => {
             pageCount.value = response.info.count
             characterList.value = [...response.results]
             store.dispatch('toogleLoading')
